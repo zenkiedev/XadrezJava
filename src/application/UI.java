@@ -48,7 +48,7 @@ public class UI {
 			int row = Integer.parseInt(s.substring(1));
 			return new ChessPosition(column, row);
 		} catch (RuntimeException e) {
-			throw new InputMismatchException("Erro lendo ChessPosition. Valores válidos são de a1 a h8.");
+			throw new InputMismatchException("Erro lendo ChessPosition. Valores vï¿½lidos sï¿½o de a1 a h8.");
 		}
 
 	}
@@ -73,7 +73,7 @@ public class UI {
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
-			for (int j = 0; j < pieces.length; j++) {
+			for (int j = 0; j < pieces[i].length; j++) {
 				printPiece(pieces[i][j], false);
 			}
 			System.out.println();
@@ -84,8 +84,8 @@ public class UI {
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
-			for (int j = 0; j < pieces.length; j++) {
-				printPiece(pieces[i][j], false);
+			for (int j = 0; j < pieces[i].length; j++) {
+				printPiece(pieces[i][j], possibleMoves[i][j]);
 			}
 			System.out.println();
 		}
@@ -114,7 +114,7 @@ public class UI {
 		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.BLACK)
 				.collect(Collectors.toList());
 
-		System.out.println("Peças capturadas: ");
+		System.out.println("Peï¿½as capturadas: ");
 		System.out.print("Brancas: ");
 		System.out.print(ANSI_WHITE);
 		System.out.println(Arrays.toString(white.toArray()));

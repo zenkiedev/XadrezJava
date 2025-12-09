@@ -84,12 +84,12 @@ public class ChessMatch {
 
 		if (testCheck(currentPlayer)) {
 			undoMove(source, target, capturedPiece);
-			throw new ChessException("Você não pode se colocar em cheque");
+			throw new ChessException("Vocï¿½ nï¿½o pode se colocar em cheque");
 		}
 
 		ChessPiece movedPiece = (ChessPiece) board.piece(target);
 
-		// promoção
+		// promoï¿½ï¿½o
 		promoted = null;
 		if (movedPiece instanceof Pawn) {
 			if ((movedPiece.getColor() == Color.WHITE && target.getRow() == 0)
@@ -99,7 +99,7 @@ public class ChessMatch {
 			}
 		}
 
-		check = (testCheck(opponent(currentPlayer))) ? true : false;
+		check = testCheck(opponent(currentPlayer));
 
 		if (testCheckMate(opponent(currentPlayer))) {
 			checkMate = true;
@@ -239,19 +239,19 @@ public class ChessMatch {
 
 	private void validadeSourcePosition(Position position) {
 		if (!board.thereIsAPiece(position)) {
-			throw new ChessException("Não existe nenhuma peça na posição inicial");
+			throw new ChessException("Nï¿½o existe nenhuma peï¿½a na posiï¿½ï¿½o inicial");
 		}
 		if (currentPlayer != ((ChessPiece) board.piece(position)).getColor()) {
-			throw new ChessException("A peça escolhida não é sua");
+			throw new ChessException("A peï¿½a escolhida nï¿½o ï¿½ sua");
 		}
 		if (!board.piece(position).isThereAnyPossibleMove()) {
-			throw new ChessException("Não existem movimentos possíveis para a peça escolhida");
+			throw new ChessException("Nï¿½o existem movimentos possï¿½veis para a peï¿½a escolhida");
 		}
 	}
 
 	private void validateTargetPosition(Position source, Position target) {
 		if (!board.piece(source).possibleMove(target)) {
-			throw new ChessException("A peça escolhida não pode ser movida para o destino");
+			throw new ChessException("A peï¿½a escolhida nï¿½o pode ser movida para o destino");
 		}
 	}
 
@@ -272,7 +272,7 @@ public class ChessMatch {
 				return (ChessPiece) p;
 			}
 		}
-		throw new IllegalStateException("Não existe o rei " + color + " no tabuleiro");
+		throw new IllegalStateException("Nï¿½o existe o rei " + color + " no tabuleiro");
 	}
 
 	private boolean testCheck(Color color) {
